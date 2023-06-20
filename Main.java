@@ -1,35 +1,41 @@
-//******Задача про вкладені цикли  (базові графічні примітиви 3)******//
-		
+//*******************ВКЛАДЕНІ ЦИКЛИ**********************//
 package main;
+
 public class Main {
     public static void main(String[] args) {
-        int rows = 6;
-      //******Трикутник******//
-        for (int i = 0; i < rows; i++) {
-            
-            for (int j = 0; j < 2 * rows - 1; j++) {
-                
-                if (j >= rows - i - 1 && j <= rows + i - 1) {
-                    System.out.print(". ");
-                } else {
-                    System.out.print("  ");
-                }
-            }
-            System.out.println(); 
+    	//************НАЛАШТУВАННЯ**************//
+        int trHeight = 3;//висота першого трикутника
+        int levels = 4;//кількість ярусів ялинки
+        String s = "."; // символ побудови
+        int spaceRight = 20;//відступ вправо
+        int trHeightChange = 2;//зміна висоти наступного трикутника
+        //**************************************//
+        
+        
+        
+        
+        //******Обчислюю  довжину гіпотенузи останнього трикутника******//
+        int z = 1;
+        for (int count = 1; count < trHeight + (levels * trHeightChange) - 1; count++) {
+            z += 2;
         }
-        System.out.println();
-        //******Трапеція******//
-        	for (int i = 3; i < rows; i++) {
-            
-            for (int j = 0; j < 2 * rows - 1; j++) {
-                
-                if (j >= rows - i - 1 && j <= rows + i - 1) {
-                    System.out.print(". ");
-                } else {
-                    System.out.print("  ");
-                }
+        s=s+" ";
+        String k = s;
+        int lp = z + 1;// вирівнювання
+        //******ялинка******//
+        for (int j = 0; j < levels; j++) {//побудова фігури
+        	
+        	//***трикутник***//
+            for (int i = 1; i <= trHeight; i++) { 
+                String spaces = " ".repeat(spaceRight + lp); //відступ вправо + вирівнювання трикутників
+                System.out.println(spaces + k); // побудова строки трикутника
+
+                k += s.repeat(2);// збільшуєм наступну строку символами побудови
+                lp -= 2;// вирівнювання по центру
             }
-            System.out.println(); 
+            k = s;//повертаю початкове значення перед побудовою наступного трикутника
+            lp = z + 1;// вирівнювання по початковому значенню
+            trHeight += trHeightChange;//зміна висоти у наступного трикутника
         }
     }
 }
